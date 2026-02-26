@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Breath Analyzer – Hyper-Local Air Quality Prediction</title>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+    }
+
+    header {
+        background: #1e3d59;
+        color: white;
+        padding: 15px;
+        font-size: 24px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    #map {
+        height: 90vh;    /* THIS FIXES THE BLANK SCREEN ISSUE */
+        width: 100%;
+        background: #ddd;
+    }
+
+    .aqi-box {
+        position: absolute;
+        top: 80px;
+        left: 20px;
+        background: white;
+        padding: 12px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        font-size: 16px;
+        z-index: 1000;
+    }
+
+    .alert-box {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        background: #e74c3c;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 6px;
+        display: none;
+        z-index: 1000;
+    }
+</style>
+
+</head>
+<body>
+
+<header>Breath Analyzer – Hyper-Local Air Quality Prediction</header>
+
+<div id="map"></div>
+
+<div class="aqi-box">
+    <b>Predicted PM2.5 (Next 12 Hours):</b><br>
+    <span id="prediction">Loading...</span>
+</div>
+
+<div id="alert" class="alert-box">
+    ⚠ Warning: High Pollution Zone Detected!
+</div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+// Initialize Map
+var map = L.map('map').setView([13.0827, 80.2707], 12);  // Chennai
+
+// Add OpenStreetMap Tiles
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 18
+}).addTo(map);
+
+// Red Zone (High Pollution)
+var redZone = L.circle([13.05, 80.25], {
+    color: "red",
+    fillColor: "red",
+    fillOpacity: 0.4,
+    radius: 1500
+}).addTo(map);
+
+// Green Zone (Safe)
+var greenZone = L.circle([13.10, 80.28], {
+    color: "green",
+    fillColor: "green",
+    fillOpacity: 0.4,
+    radius: 1800
+}).addTo(map);
+
+// Fake PM2.5 Prediction
+let pm = Math.floor(40 + Math.random() * 120);
+document.getElementById("prediction").innerText = pm + " µg/m³";
+
+// Marker for user
+var marker = L.marker([13.07, 80.27]).addTo(map);
+
+// Check alert when entering pollution zone
+function checkAlert() {
+    let userPos = marker.getLatLng();
+
+    let dist = userPos.distanceTo([13.05, 80.25]);
+
+    if (dist < 1500) {
+        document.getElementById("alert").style.display = "block";
+    } else {
+        document.getElementById("alert").style.display = "none";
+    }
+}
+
+// Move marker when user clicks map
+map.on("click", function(e) {
+    marker.setLatLng(e.latlng);
+    checkAlert();
+});
+</script>
+
+</body>
+</html>
