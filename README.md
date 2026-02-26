@@ -1,13 +1,13 @@
-# air-quality-predictor
+ air-quality-predictor
 “Hyper-local air quality prediction with IDW &amp; PM2.5 forecasting”
-# 🌬️ Breath Analyzer – Hyper-Local Air Quality Predictor
+ Breath Analyzer – Hyper-Local Air Quality Predictor
 
 A predictive air-quality engine using **Spatial Interpolation (IDW)**, **PM2.5 forecasting**, **dynamic heatmaps**, and **automated alerts**.  
 Built for **Eco-Hackathon – Round 2 Prototype Submission**.
 
 ---
 
-## ⭐ 1. Project Overview
+ 1. Project Overview
 
 City-wide air quality averages hide the real pollution differences between specific traffic junctions and clean areas.  
 This project solves the **data blindspot** by estimating AQI at any location and predicting upcoming pollution levels.
@@ -23,7 +23,7 @@ This prototype demonstrates core logic for proof-of-concept.
 
 ---
 
-## ⭐ 2. Features
+ 2. Features
 
 ✔ Interactive pollution map using Leaflet  
 ✔ Red (High-pollution) & Green (Safe) zones  
@@ -34,7 +34,7 @@ This prototype demonstrates core logic for proof-of-concept.
 
 ---
 
-## ⭐ 3. Tech Stack
+ 3. Tech Stack
 
 | Component | Technology Used |
 |----------|------------------|
@@ -44,19 +44,19 @@ This prototype demonstrates core logic for proof-of-concept.
 
 ---
 
-## ⭐ 4. How to Run the Website
+ 4. How to Run the Website
 
-### 🔹 Option 1 — Easiest
+ Option 1 — Easiest
 Just double-click `index.html` → it opens in your browser.
 
-### 🔹 Option 2 — Using VS Code + Live Server
+ Option 2 — Using VS Code + Live Server
 1. Open folder in VS Code  
 2. Install **Live Server** extension  
 3. Right-click `index.html` → **Open with Live Server**
 
 ---
 
-## ⭐ 5. Folder Structure
+# 5. Folder Structure
 air-quality-predictor/
 │── index.html → Main working prototype (map + heatmap + alerts)
 │── app.py → Placeholder backend (for ML integration)
@@ -65,16 +65,16 @@ air-quality-predictor/
 
 ---
 
-## ⭐ 6. How the Prototype Works
+6. How the Prototype Works
 
-### 🔸 Interpolation (IDW)
+ Interpolation (IDW)
 Estimates pollution at locations where no sensor exists by giving more weight to nearby stations.
 
-### 🔸 Prediction (ML Model – optional)
+ Prediction (ML Model – optional)
 Predicts PM2.5 for the next 12–24 hours using weather + historical data  
 (Custom model can be added in `app.py` later.)
 
-### 🔸 Visualization
+ Visualization
 - Red zone → hazardous area  
 - Green zone → safe corridor  
 - Click on map → moves user marker  
@@ -82,8 +82,8 @@ Predicts PM2.5 for the next 12–24 hours using weather + historical data
 
 ---
 
-## ⭐ 7. Demo Video  
-🎥 *(Will be added during submission)*  
+ 7. Demo Video  
+ (Will be added during submission)*  
 The video will show:
 - Map working  
 - Prediction value  
@@ -92,7 +92,7 @@ The video will show:
 
 ---
 
-## ⭐ 8. Future Enhancements  
+8. Future Enhancements  
 - Real-time sensor integration  
 - Advanced ML forecasting (LSTM / RF)  
 - Pollution-safe route planning  
